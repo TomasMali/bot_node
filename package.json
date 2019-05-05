@@ -1,0 +1,17 @@
+{
+  "name": "bot_node",
+  "version": "1.0.0",
+  "description": "myBot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Tomas Mali",
+  "license": "ISC",
+  "dependencies": {
+    "http-headers": "^3.0.2",
+    "nodemon": "^1.19.0",
+    "telegram-node-bot": "^4.0.5"
+  }
+}
