@@ -6,6 +6,8 @@ const TextCommand = Telegram.TextCommand
 const tg = new Telegram.Telegram('676793933:AAFSqroVLFsRsYU1nk12-gmVWrYprDN2q-I')
 const UsersController = require('./api/controllers/users')
 const OtherwiseController = require('./api/controllers/otherwise')
+const MenuController = require('./api/controllers/menu')   
+const MenuDelGiornoController = require('./api/controllers/menuDelGiorno') 
 
 
 
@@ -46,6 +48,29 @@ tg.router
         new TextCommand('/test', 'test'),
         new UsersController()
     ).
+    //    MENU CONTROLLER
+    when(
+        new TextCommand('/dammiMenuNr', 'getOneMenu'),
+        new MenuController()
+    ).
+    when(
+        new TextCommand('/dammiTuttiIMenu', 'getAllMenu'),
+        new MenuController()
+    ).
+    when(
+        new TextCommand('/cancellaMenuNr', 'removeOneMenu'),
+        new MenuController()
+    ).
+    when(
+        new TextCommand('/inserisciMenu', 'insertMenu'),
+        new MenuController()
+    ).
+    //    MENU DEL GIORNO CONTROLLER
+    when(
+        new TextCommand('/menuDiOggi', 'getMenuDelGiorno'),
+        new MenuDelGiornoController()
+    ).
+     //    OTHERWISE CONTROLLER
     otherwise(
         new OtherwiseController()
     )
