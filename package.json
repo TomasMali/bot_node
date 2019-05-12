@@ -12,7 +12,6 @@
   "dependencies": {
     "http-headers": "^3.0.2",
     "node-cron": "^2.0.3",
-    "nodemon": "^1.19.0",
     "telegram-node-bot": "^4.0.5"
   }
 }

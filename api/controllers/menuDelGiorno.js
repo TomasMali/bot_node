@@ -132,9 +132,9 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
 
         // Qui cerco se l'utente è registrato
         const telegramUser = $.update.message.from;  // http://localhost:3000/users/find_one/
-        const options = {
-            hostname: 'localhost',
-            port: 3000,
+        const options = { // localhost
+            hostname: 'https://rest-restorante.herokuapp.com',
+            port: process.env.PORT || 3000,
             path: '/users/find_one/' + telegramUser.id,
             method: 'GET'
         }
@@ -146,7 +146,9 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
                     $.sendMessage("Non sei ancora registrato, clickare /JoinMe per registrarsi ")
                 else {
                     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
-                    axios.get('http://localhost:3000/menuDelGiorno')
+                    const urlHeroku = 'https://rest-restorante.herokuapp.com/menuDelGiorno'
+                    // 'http://localhost:3000/menuDelGiorno'
+                    axios.get(urlHeroku)
                         .then(response => {
                             let obj = response.data;
                             if (obj.message.length>0) {

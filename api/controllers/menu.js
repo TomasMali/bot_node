@@ -21,8 +21,8 @@ class MenuController extends Telegram.TelegramBaseController {
     // Qui cerco se l'utente è registrato
     const telegramUser = $.update.message.from;  // http://localhost:3000/users/find_one/
     const options = {
-      hostname: 'localhost',
-      port: 3000,
+      hostname: 'https://rest-restorante.herokuapp.com',
+      port: process.env.PORT || 3000,
       path: '/users/find_one/' + telegramUser.id,
       method: 'GET'
     }
@@ -46,7 +46,7 @@ class MenuController extends Telegram.TelegramBaseController {
             $.sendMessage(commando.join('\n'))
             return
         }
-        axios.get('http://localhost:3000/menu/find_one/'+menuId)
+        axios.get('https://rest-restorante.herokuapp.com/menu/find_one/'+menuId)
         .then(response => {
             let obj = response.data;
             if (obj.message.length>0) {
