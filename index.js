@@ -11,11 +11,7 @@ const MenuDelGiornoController = require('./api/controllers/menuDelGiorno')
 
 
 
-tg.router
-    .when(
-        new TextCommand('ping', 'do'),
-        new UsersController()
-    ).
+tg.router.
     when(
         new TextCommand('/JoinMe', 'addUser'),
         new UsersController()
@@ -24,12 +20,16 @@ tg.router
         new TextCommand('/RemoveMe', 'removeMe'),
         new UsersController()
     ).
+    when(
+        new TextCommand('/menuDelGiorno', 'getMenuDelGiorno'),
+        new MenuDelGiornoController()
+    ).
     when(   
         new TextCommand('/getUserIfExsists', 'getUserIfExsists'),
         new UsersController()
     ).
     when(
-        new TextCommand('/getAllUser', 'getAllUser'),
+        new TextCommand('/getAllUsers', 'getAllUsers'),
         new UsersController()
     ).
     when(
@@ -41,7 +41,7 @@ tg.router
         new UsersController()
     ).
     when(
-        new TextCommand('/GuardaChiCeOggi', 'GuardaChiCeOggi'),
+        new TextCommand('/GuardaChiCiVaOggi', 'GuardaChiCiVaOggi'),
         new UsersController()
     ).
     when(
@@ -65,9 +65,22 @@ tg.router
         new TextCommand('/inserisciMenu', 'insertMenu'),
         new MenuController()
     ).
-    //    MENU DEL GIORNO CONTROLLER
+    //    MENU DEL GIORNO CONTROLLER   
     when(
-        new TextCommand('/menuDiOggi', 'getMenuDelGiorno'),
+        new TextCommand('/inserisciMenuDiOggi', 'inserisciMenuDiOggi'),   
+        new MenuDelGiornoController()
+    ).
+    when(
+        new TextCommand('/cancellaMenuDelGiorno', 'cancellaMenuDelGiorno'),   
+        new MenuDelGiornoController()
+    ).
+    when(
+        new TextCommand('/MandaMenuDelGiorno_A_Tutti', 'MandaMenuDelGiorno_A_Tutti'),   
+        new MenuDelGiornoController()
+    ).
+    // SUPER USER
+    when(
+        new TextCommand('/startcrono', 'startcrono'),   
         new MenuDelGiornoController()
     ).
      //    OTHERWISE CONTROLLER

@@ -13,10 +13,6 @@ const axios = require('axios');
 
 class UsersController extends Telegram.TelegramBaseController {
 
-  scrivi($) {
-    $.sendMessage('pong')
-  }
-
   /**
    * this method insers a new user
    */
@@ -191,7 +187,7 @@ class UsersController extends Telegram.TelegramBaseController {
   }
 
 
-  GuardaChiCeOggi($){
+  GuardaChiCiVaOggi($){
     axios.get('http://localhost:3000/users/find_one/' + $.update.message.from.id)
     .then(response => {
       let obj = response.data;
@@ -240,7 +236,7 @@ class UsersController extends Telegram.TelegramBaseController {
 //Non viene usato
   getUserIfExsists($) {
 
-    const telegramUser = $.update.message.from;  // http://localhost:3000/users/find_one/
+    const telegramUser = $.update.message.from; 
 
     axios.get('http://localhost:3000/users/find_one/' + telegramUser.id)
       .then(response => {
@@ -262,7 +258,7 @@ class UsersController extends Telegram.TelegramBaseController {
 
 
 
-  getAllUser($) {
+  getAllUsers($) {
     axios.get('http://localhost:3000/users/find_one/' + $.update.message.from.id)
       .then(response => {
         let obj = response.data;
@@ -311,14 +307,13 @@ class UsersController extends Telegram.TelegramBaseController {
   get routes() {
     return {
       'test': 'test',
-      'do': 'scrivi',
       'addUser': 'addUser',
       'removeMe': 'removeUser',
       "getUserIfExsists": "getUserIfExsists",
-      "getAllUser": "getAllUser",
+      "getAllUsers": "getAllUsers",
       "CiVengoAnchioOggi": "CiVengoAnchioOggi",
       "NonCiVengoPiu": "NonCiVengoPiu",
-      "GuardaChiCeOggi": "GuardaChiCeOggi"
+      "GuardaChiCiVaOggi": "GuardaChiCiVaOggi"
     }
   }
 }
