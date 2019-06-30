@@ -8,8 +8,13 @@ const axios = require('axios');
 
 const Telegram = require('telegram-node-bot');
 
+const MenuDelGiornoController = require('./menuDelGiorno') 
+const UsersController = require('./users')
+
 class OtherwiseController extends Telegram.TelegramBaseController {
   handle($) {
+
+
 
     // Qui cerco se l'utente è registrato
     const telegramUser = $.update.message.from;  // http://localhost:3000/users/find_one/
@@ -33,8 +38,20 @@ class OtherwiseController extends Telegram.TelegramBaseController {
               // Controllo se l'utente è admin
               var result = []
               if (obj.message[0].admin !== true) {
-                // Visualizzabile solo agli utenti ADMI
+                // Visualizzabile aggli utenti normali
 
+
+    $.runMenu({
+      message: '*** WHAT CAN I DO FOR YOU *** :',
+      layout: 2,
+      '\ud83c\udf5c  /menuDelGiorno': () => {new  MenuDelGiornoController().getMenuDelGiorno($)}, 
+      '\ud83d\udd0d  /GuardaChiCiVaOggi': () => {new UsersController().GuardaChiCiVaOggi($)}, 
+      '\ud83d\udc65  /CiVengoAnchioOggi': () => {new UsersController().CiVengoAnchioOggi($)},
+      '\ud83d\udc4b  /NonCiVengoPiu': () => {new UsersController().NonCiVengoPiu($)},
+      '\u2716\ufe0f  /RemoveMe': () => {new UsersController().removeUser($)}, 
+  })
+
+  /*
                 result.push('*** WHAT CAN I DO FOR YOU ***')
                 result.push('\n')
                 result.push('-------------------------------------------------')
@@ -51,13 +68,18 @@ class OtherwiseController extends Telegram.TelegramBaseController {
                 result.push(" /RemoveMe  Per non ricevere più notifiche")
                 result.push('--------------------------------------------------')
                       result.push('\n')
+*/
+
+                
+    
+
 
               }
               else {
                 result.push('*** SOLO AMMINISTRATORI ***')
                 result.push('\n')   
                 result.push('----------------------------------------------------')
-                result.push(" /inserisciMenuDiOggi  Inserisci il menu del giorno.")
+                result.push(" /inserisciPiattoDelGiorno  Inserisci il menu del giorno.")
                 result.push('---------------------------------------------------')
                 result.push(" /dammiMenuNr Visualizza un menu in base al numero passato. Scrivi ad esemp: " + "'/dammiMenuNr 1' per vedere menu nr 1")
                 result.push('----------------------------------------------------')
@@ -110,6 +132,9 @@ class OtherwiseController extends Telegram.TelegramBaseController {
 
 
   }
+
+
+
 }
 
 module.exports = OtherwiseController;

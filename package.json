@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "now-build": "node index.js"
   },
   "author": "Tomas Mali",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "http": "0.0.0",
     "http-headers": "^3.0.2",
     "node-cron": "^2.0.3",
+    "request": "^2.88.0",
     "telegram-node-bot": "^4.0.5"
   },
   "engines": {

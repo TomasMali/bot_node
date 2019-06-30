@@ -10,117 +10,117 @@ const http = require('http')
 
 const axios = require('axios');
 
-const utils = require('../../utils')
+// const utils = require('../../utils')
 
 
 
 class MenuDelGiornoController extends Telegram.TelegramBaseController {
 
 
-    MandaMenuDelGiorno_A_Tutti($){
-    // Qui cerco se l'utente è registrato
-    const telegramUser = $.update.message.from;  // http://localhost:3000/users/find_one/
-    const options = {
-        hostname: 'localhost',
-        port: 3000,
-        path: '/users/find_one/' + telegramUser.id,
-        method: 'GET'
-    }
-    const req = http.request(options, (res) => {
-        console.log(`statusCode: ${res.statusCode}`)
-        res.on('data', (d) => {
-            let obj = JSON.parse(d);
-            if (!obj.message)
-                $.sendMessage("Non sei ancora registrato, clickare /JoinMe per registrarsi ")
-            else {
-                // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
-                axios.get('http://localhost:3000/menuDelGiorno')
-                    .then(response => {
-                        let obj = response.data;
-                        if (obj.message.length>0) {
-                            var result = [];
-                            const json_ = obj.message;
-
-                            json_.forEach(i => result.push(i));
-                            var resultAsString = [];
-                            json_.forEach((v, i) => {
-
-                                resultAsString.push(" PRIMO  --------> [" + v.primo.varieta_1
-                                    + "  , " + v.primo.varieta_2
-                                    + "  , " + v.primo.varieta_3
-                                    + "  , " + v.primo.varieta_4
-                                    + "  , " + v.primo.varieta_5 + ']')
-                                resultAsString.join('\n');
-                                resultAsString.push("SECONDO  --------> [" + v.secondo.varieta_1
-                                    + "  , " + v.secondo.varieta_2
-                                    + "  , " + v.secondo.varieta_3
-                                    + "  , " + v.secondo.varieta_4
-                                    + "  , " + v.secondo.varieta_5 + ']')
-
-                                resultAsString.join('\n');
-                                resultAsString.push("CONTORNO  --------> [" + v.contorno.varieta_1
-                                    + "  , " + v.contorno.varieta_2
-                                    + "  , " + v.contorno.varieta_3
-                                    + "  , " + v.contorno.varieta_4
-                                    + "  , " + v.contorno.varieta_5 + "]"
-                                )
-                            })
-
-
-                    //        $.sendMessage(resultAsString.join('\n'))
-
-
-
-
-                            axios.get('http://localhost:3000/users')
-                            .then(response => {
-                              let obj = response.data;
-                              if (obj.message) {
+    MandaMenuDelGiorno_A_Tutti($) {
+        // Qui cerco se l'utente è registrato
+        const telegramUser = $.update.message.from;  // http://localhost:3000/users/find_one/
+        const options = {
+            hostname: 'localhost',
+            port: 3000,
+            path: '/users/find_one/' + telegramUser.id,
+            method: 'GET'
+        }
+        const req = http.request(options, (res) => {
+            console.log(`statusCode: ${res.statusCode}`)
+            res.on('data', (d) => {
+                let obj = JSON.parse(d);
+                if (!obj.message)
+                    $.sendMessage("Non sei ancora registrato, clickare /JoinMe per registrarsi ")
+                else {
+                    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+                    axios.get('http://localhost:3000/menuDelGiorno')
+                        .then(response => {
+                            let obj = response.data;
+                            if (obj.message.length > 0) {
                                 var result = [];
                                 const json_ = obj.message;
-                
+
                                 json_.forEach(i => result.push(i));
-                
-                           //     var resultAsStringUsers = [];
-                
+                                var resultAsString = [];
                                 json_.forEach((v, i) => {
-                                   // resultAsStringUsers.push((i + 1) + ")  Nome: " + v.name + "  Cognome: " + v.surname)
-                                   $.api.sendMessage(v.telegramId, resultAsString.join('\n'))
+
+                                    resultAsString.push(" PRIMO  --------> [" + v.primo.varieta_1
+                                        + "  , " + v.primo.varieta_2
+                                        + "  , " + v.primo.varieta_3
+                                        + "  , " + v.primo.varieta_4
+                                        + "  , " + v.primo.varieta_5 + ']')
+                                    resultAsString.join('\n');
+                                    resultAsString.push("SECONDO  --------> [" + v.secondo.varieta_1
+                                        + "  , " + v.secondo.varieta_2
+                                        + "  , " + v.secondo.varieta_3
+                                        + "  , " + v.secondo.varieta_4
+                                        + "  , " + v.secondo.varieta_5 + ']')
+
+                                    resultAsString.join('\n');
+                                    resultAsString.push("CONTORNO  --------> [" + v.contorno.varieta_1
+                                        + "  , " + v.contorno.varieta_2
+                                        + "  , " + v.contorno.varieta_3
+                                        + "  , " + v.contorno.varieta_4
+                                        + "  , " + v.contorno.varieta_5 + "]"
+                                    )
                                 })
-                              //  $.sendMessage(resultAsString.join('\n'))
+
+
+                                //        $.sendMessage(resultAsString.join('\n'))
+
+
+
+
+                                axios.get('http://localhost:3000/users')
+                                    .then(response => {
+                                        let obj = response.data;
+                                        if (obj.message) {
+                                            var result = [];
+                                            const json_ = obj.message;
+
+                                            json_.forEach(i => result.push(i));
+
+                                            //     var resultAsStringUsers = [];
+
+                                            json_.forEach((v, i) => {
+                                                // resultAsStringUsers.push((i + 1) + ")  Nome: " + v.name + "  Cognome: " + v.surname)
+                                                $.api.sendMessage(v.telegramId, resultAsString.join('\n'))
+                                            })
+                                            //  $.sendMessage(resultAsString.join('\n'))
+                                            // Per mandare broadcast
+                                            //  $.api.sendMessage(622406760, "Broadcast ")
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.log(error);
+                                    });
+
+
+
+
+
+
+
+
+
                                 // Per mandare broadcast
-                                //  $.api.sendMessage(622406760, "Broadcast ")
-                              }
-                            })
-                            .catch(error => {
-                              console.log(error);
-                            });
-
-
-
-
-
-
-
-
-
-                            // Per mandare broadcast
-                            //  $.api.sendMessage(145645559, "Broadcast ")  145645559
-                        }
-                        else
-                        $.sendMessage("Non è stato ancora inserito il menu del giorno! Inseriscilo prima poi riprova il commando per inviarlo a tutti.")
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-                // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-            }
+                                //  $.api.sendMessage(145645559, "Broadcast ")  145645559
+                            }
+                            else
+                                $.sendMessage("Non è stato ancora inserito il menu del giorno! Inseriscilo prima poi riprova il commando per inviarlo a tutti.")
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                }
+            })
         })
-    })
-    req.on('error', (error) => {
-        console.error(error)
-    })
-    req.end()
+        req.on('error', (error) => {
+            console.error(error)
+        })
+        req.end()
     }
 
 
@@ -133,11 +133,73 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
         // Qui cerco se l'utente è registrato
         const telegramUser = $.update.message.from;  // http://localhost:3000/users/find_one/
         const options = { // localhost
-            hostname: 'https://rest-restorante.herokuapp.com',
-            port: process.env.PORT || 3000,
+            hostname: 'localhost',
+           port: 3000,
             path: '/users/find_one/' + telegramUser.id,
             method: 'GET'
         }
+
+
+        axios.get('http://localhost:3000/users/find_one/'+ telegramUser.id)
+        .then(response => {
+            let obj = response.data;
+            if (!obj.message)
+            $.sendMessage("Non sei ancora registrato, clickare /JoinMe per registrarsi ")
+        else {
+            // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+            const urlHeroku = 'http://localhost:3000/menuDelGiorno' // https://rest-restorante.herokuapp.com/menuDelGiorno
+            // 'http://localhost:3000/menuDelGiorno'
+            axios.get(urlHeroku)
+                .then(response => {
+                    let obj = response.data;
+                    if (obj.message.length > 0) {
+                        var result = [];
+                        const json_ = obj.message;
+
+                        json_.forEach(i => result.push(i));
+                        var resultAsString = [];
+                        json_.forEach((v, i) => {
+
+                            resultAsString.push(" PRIMO  --------> [" + v.primo.varieta_1
+                                + "  , " + v.primo.varieta_2
+                                + "  , " + v.primo.varieta_3
+                                + "  , " + v.primo.varieta_4
+                                + "  , " + v.primo.varieta_5 + ']')
+                            resultAsString.join('\n');
+                            resultAsString.push("SECONDO  --------> [" + v.secondo.varieta_1
+                                + "  , " + v.secondo.varieta_2
+                                + "  , " + v.secondo.varieta_3
+                                + "  , " + v.secondo.varieta_4
+                                + "  , " + v.secondo.varieta_5 + ']')
+
+                            resultAsString.join('\n');
+                            resultAsString.push("CONTORNO  --------> [" + v.contorno.varieta_1
+                                + "  , " + v.contorno.varieta_2
+                                + "  , " + v.contorno.varieta_3
+                                + "  , " + v.contorno.varieta_4
+                                + "  , " + v.contorno.varieta_5 + "]"
+                            )
+                        })
+                        $.sendMessage(resultAsString.join('\n'))
+                        // Per mandare broadcast
+                        //  $.api.sendMessage(145645559, "Broadcast ")  145645559
+                    }
+                    else
+                        $.sendMessage("Non è stato ancora inserito il menu del giorno. Riprova più tardi.")
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+
+/*
+
         const req = http.request(options, (res) => {
             console.log(`statusCode: ${res.statusCode}`)
             res.on('data', (d) => {
@@ -151,7 +213,7 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
                     axios.get(urlHeroku)
                         .then(response => {
                             let obj = response.data;
-                            if (obj.message.length>0) {
+                            if (obj.message.length > 0) {
                                 var result = [];
                                 const json_ = obj.message;
 
@@ -184,7 +246,7 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
                                 //  $.api.sendMessage(145645559, "Broadcast ")  145645559
                             }
                             else
-                            $.sendMessage("Non è stato ancora inserito il menu del giorno. Riprova più tardi.")
+                                $.sendMessage("Non è stato ancora inserito il menu del giorno. Riprova più tardi.")
                         })
                         .catch(error => {
                             console.log(error);
@@ -197,6 +259,9 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
             console.error(error)
         })
         req.end()
+
+*/
+
     }
 
     // Testato e funzionante
@@ -223,15 +288,15 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
                             // Controllo se l'utente è admin
                             if (obj.message[0].admin === true) {
                                 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                                const menuId = parseInt($.message.text.split(' ').slice(1).join(' '),10)
+                                const menuId = parseInt($.message.text.split(' ').slice(1).join(' '), 10)
 
-                                if (menuId !== parseInt(menuId, 10) ||menuId === '') {
+                                if (menuId !== parseInt(menuId, 10) || menuId === '') {
                                     var commando = [];
                                     commando.push('Commando non riconosciuto! ');
                                     commando.join('\n');
-                                    commando.push('Scrivi:   "/inserisciMenuDiOggi" uno spazio, poi il numero del menu da inserire. Esempio:');
+                                    commando.push('Scrivi:   "/inserisciPiattoDelGiorno" uno spazio, poi Id menu da inserire. Esempio:');
                                     commando.join('\n');
-                                    commando.push('/inserisciMenuDiOggi 2')
+                                    commando.push('/inserisciPiattoDelGiorno 2')
                                     $.sendMessage(commando.join('\n'))
                                     return
                                 }
@@ -366,10 +431,10 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
     }
 
 
-    startcrono($){
-        new utils().startCron($);
+    //   startcrono($){
+    //       new utils().startCron($);
 
-    }
+    //  }
 
 
 
@@ -378,7 +443,7 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
             'getMenuDelGiorno': 'getMenuDelGiorno',
             'inserisciMenuDiOggi': 'inserisciMenuDiOggi',
             'cancellaMenuDelGiorno': 'cancellaMenuDelGiorno',
-            'MandaMenuDelGiorno_A_Tutti' : 'MandaMenuDelGiorno_A_Tutti',
+            'MandaMenuDelGiorno_A_Tutti': 'MandaMenuDelGiorno_A_Tutti',
             'startcrono': 'startcrono'
 
         }

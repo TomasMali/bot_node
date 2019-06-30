@@ -3,16 +3,14 @@
 const Telegram = require('telegram-node-bot')
 const TelegramBaseController = Telegram.TelegramBaseController
 const TextCommand = Telegram.TextCommand
-const tg = new Telegram.Telegram('676793933:AAFSqroVLFsRsYU1nk12-gmVWrYprDN2q-I', {
-    webAdmin: {
-        port: process.env.PORT || 3000,
-        host: 'https://restorant-bot.herokuapp.com'
-    }
-    })
+const tg = new Telegram.Telegram('676793933:AAFSqroVLFsRsYU1nk12-gmVWrYprDN2q-I')
 const UsersController = require('./api/controllers/users')
 const OtherwiseController = require('./api/controllers/otherwise')
 const MenuController = require('./api/controllers/menu')   
 const MenuDelGiornoController = require('./api/controllers/menuDelGiorno') 
+
+
+
 
 
 
@@ -72,7 +70,7 @@ tg.router.
     ).
     //    MENU DEL GIORNO CONTROLLER   
     when(
-        new TextCommand('/inserisciMenuDiOggi', 'inserisciMenuDiOggi'),   
+        new TextCommand('/inserisciPiattoDelGiorno', 'inserisciMenuDiOggi'),   
         new MenuDelGiornoController()
     ).
     when(

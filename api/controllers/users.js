@@ -215,7 +215,7 @@ class UsersController extends Telegram.TelegramBaseController {
             }
             else
             {
-              $.sendMessage('Per il momento non ci va nessuno oggi! Controlla più tardi.')
+              $.sendMessage('Per il momento non ci va nessuno! Controlla più tardi.')
             }
           })
           .catch(error => {
