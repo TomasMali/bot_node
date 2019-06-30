@@ -53,7 +53,7 @@ tg.router.
     ).
     //    MENU CONTROLLER
     when(
-        new TextCommand('/dammiMenuNr', 'getOneMenu'),
+        new TextCommand('/trovaConId', 'getOneMenu'),
         new MenuController()
     ).
     when(
@@ -61,7 +61,7 @@ tg.router.
         new MenuController()
     ).
     when(
-        new TextCommand('/cancellaMenuNr', 'removeOneMenu'),
+        new TextCommand('/cancella', 'removeOneMenu'),
         new MenuController()
     ).
     when(

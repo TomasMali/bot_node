@@ -9,6 +9,9 @@ const http = require('http')
 
 const utils = require('../../utils.js')
 
+const MenuDelGiornoController = require('./menuDelGiorno')
+const MenuController = require('./menu')
+
 const axios = require('axios');
 
 class UsersController extends Telegram.TelegramBaseController {
@@ -35,7 +38,17 @@ class UsersController extends Telegram.TelegramBaseController {
         return
       }
       console.log(`statusCode: ${res.statusCode}` + body.message)
-      $.sendMessage("Utente (" + telegramUser.firstName + " " + telegramUser.lastName + ")  " + body.message)
+    //  $.sendMessage("Utente (" + telegramUser.firstName + " " + telegramUser.lastName + ")  " + body.message)
+   
+      $.runMenu({
+        message: '*** WHAT CAN I DO FOR YOU *** ',
+        layout: 2,
+        '\ud83c\udf5c  /menuDelGiorno': () => { new MenuDelGiornoController().getMenuDelGiorno($) },
+        '\ud83d\udd0d  /GuardaChiCiVaOggi': () => { new UsersController().GuardaChiCiVaOggi($) },
+        '\ud83d\udc65  /CiVengoAnchioOggi': () => { new UsersController().CiVengoAnchioOggi($) },
+        '\ud83d\udc4b  /NonCiVengoPiu': () => { new UsersController().NonCiVengoPiu($) },
+        '\u2716\ufe0f  /RemoveMe': () => { new UsersController().removeUser($) },
+      })
     })
   }
 

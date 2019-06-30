@@ -19,6 +19,13 @@ class MenuController extends Telegram.TelegramBaseController {
 
   // Testato e funziona
   getOneMenu($) {
+
+    $.sendMessage('Dammi Id del menu da cercare')
+    $.waitForRequest
+    .then($ => {
+
+
+
     // Qui cerco se l'utente è registrato
     const telegramUser = $.update.message.from;  //  https://rest-restorante.herokuapp.com
     const options = {
@@ -35,7 +42,7 @@ class MenuController extends Telegram.TelegramBaseController {
           $.sendMessage("Non sei ancora registrato, clickare /JoinMe per registrarsi ")
         else {
           // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   
-          const menuId = parseInt($.message.text.split(' ').slice(1).join(' '), 10)
+          const menuId = parseInt($.message.text,10);
           console.log(menuId)
           if (menuId !== parseInt(menuId, 10) || menuId === '') {
             var commando = [];
@@ -59,7 +66,7 @@ class MenuController extends Telegram.TelegramBaseController {
                 var resultAsString = [];
 
                 json_.forEach((v, i) => {
-                  resultAsString.push('****      MENU NUMERO ' + (i + 1) + ')   ***')
+                //  resultAsString.push('****      MENU NUMERO ' + (i + 1) + ')   ***')
                   resultAsString.push('\n')
                   //    resultAsString.join('\n');
 
@@ -110,6 +117,7 @@ class MenuController extends Telegram.TelegramBaseController {
     })
     req.end()
 
+  })
 
 
 
@@ -197,6 +205,11 @@ class MenuController extends Telegram.TelegramBaseController {
 
   // Testato e funzionante
   removeOneMenu($) {
+
+    $.sendMessage('Dammi Id del menu da cancellare')
+    $.waitForRequest
+    .then($ => {
+      
     // Qui cerco se l'utente è registrato
     const telegramUser = $.update.message.from;  // http://localhost:3000/users/find_one/
     const options = {
@@ -220,7 +233,7 @@ class MenuController extends Telegram.TelegramBaseController {
               if (obj.message[0].admin === true) {
                 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
                 const data = JSON.stringify({
-                  menuId: parseInt($.message.text.split(' ').slice(1).join(' '), 10)
+                  menuId: parseInt($.message.text,10)
                 })
                 const option = {
                   hostname: 'localhost',
@@ -264,7 +277,7 @@ class MenuController extends Telegram.TelegramBaseController {
     req.end()
 
 
-
+  })
   }
 
   insertMenu($) {

@@ -266,6 +266,14 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
 
     // Testato e funzionante
     inserisciMenuDiOggi($) {
+
+        $.sendMessage('Dammi Id del piatto del giorno da inserire')
+        $.waitForRequest
+        .then($ => {
+            
+       
+
+
         // Qui cerco se l'utente è registrato
         const telegramUser = $.update.message.from;  // http://localhost:3000/users/find_one/
         const options = {
@@ -288,7 +296,8 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
                             // Controllo se l'utente è admin
                             if (obj.message[0].admin === true) {
                                 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                                const menuId = parseInt($.message.text.split(' ').slice(1).join(' '), 10)
+                              
+                             const  menuId = parseInt($.message.text,10);
 
                                 if (menuId !== parseInt(menuId, 10) || menuId === '') {
                                     var commando = [];
@@ -330,6 +339,10 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
                                             req.write(data)
                                             req.end()
                                             // ########################## INSERISCI MENU DEL GIORNO ##################################
+                                          
+                                           
+                                                   
+                                               
                                             request.post('http://localhost:3000/menuDelGiorno/insert', {
                                                 json: {
                                                     "menuId": obj.message[0].menuId,
@@ -364,11 +377,16 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
                                                 else
                                                     $.sendMessage(body.message)
                                             })
-                                            // ##########################################################################################
+                                     
+                                            
+                                        
+                                            // ################################vvv##########################################################
                                         }
+                                        
                                         else {
                                             $.sendMessage("Menu del giorno non esistente, prova con un'altro menu clickando /dammiTuttiIMenu")
                                         }
+                                          
                                     })
                                     .catch(error => {
                                         console.log(error);
@@ -389,6 +407,8 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
             console.error(error)
         })
         req.end()
+
+    })
 
     }
 

@@ -8,7 +8,8 @@ const axios = require('axios');
 
 const Telegram = require('telegram-node-bot');
 
-const MenuDelGiornoController = require('./menuDelGiorno') 
+const MenuDelGiornoController = require('./menuDelGiorno')
+const MenuController = require('./menu')
 const UsersController = require('./users')
 
 class OtherwiseController extends Telegram.TelegramBaseController {
@@ -41,65 +42,65 @@ class OtherwiseController extends Telegram.TelegramBaseController {
                 // Visualizzabile aggli utenti normali
 
 
-    $.runMenu({
-      message: '*** WHAT CAN I DO FOR YOU *** :',
-      layout: 2,
-      '\ud83c\udf5c  /menuDelGiorno': () => {new  MenuDelGiornoController().getMenuDelGiorno($)}, 
-      '\ud83d\udd0d  /GuardaChiCiVaOggi': () => {new UsersController().GuardaChiCiVaOggi($)}, 
-      '\ud83d\udc65  /CiVengoAnchioOggi': () => {new UsersController().CiVengoAnchioOggi($)},
-      '\ud83d\udc4b  /NonCiVengoPiu': () => {new UsersController().NonCiVengoPiu($)},
-      '\u2716\ufe0f  /RemoveMe': () => {new UsersController().removeUser($)}, 
-  })
+                $.runMenu({
+                  message: '*** WHAT CAN I DO FOR YOU *** ',
+                  layout: 2,
+                  '\ud83c\udf5c  /menuDelGiorno': () => { new MenuDelGiornoController().getMenuDelGiorno($) },
+                  '\ud83d\udd0d  /GuardaChiCiVaOggi': () => { new UsersController().GuardaChiCiVaOggi($) },
+                  '\ud83d\udc65  /CiVengoAnchioOggi': () => { new UsersController().CiVengoAnchioOggi($) },
+                  '\ud83d\udc4b  /NonCiVengoPiu': () => { new UsersController().NonCiVengoPiu($) },
+                  '\u2716\ufe0f  /RemoveMe': () => { new UsersController().removeUser($) },
+                })
 
-  /*
-                result.push('*** WHAT CAN I DO FOR YOU ***')
-                result.push('\n')
-                result.push('-------------------------------------------------')
-                result.push(" /menuDelGiorno  Il menu di oggi.")
-                result.push('-------------------------------------------------')
-                result.push(" /GuardaChiCiVaOggi Guarda chi si unisce oggi")
-         //       result.push('-------------------------------------------------')
-        //        result.push(" /getAllUsers  Per visualizzare tutti gli utenti")
-                result.push('--------------------------------------------------')
-                result.push(" /CiVengoAnchioOggi  Per unirti a pranzo")
-                result.push('--------------------------------------------------')
-                result.push(" /NonCiVengoPiu  Ho cambiato idea")
-                result.push('-------------------------------------------------')
-                result.push(" /RemoveMe  Per non ricevere più notifiche")
-                result.push('--------------------------------------------------')
-                      result.push('\n')
-*/
+                /*
+                              result.push('*** WHAT CAN I DO FOR YOU ***')
+                              result.push('\n')
+                              result.push('-------------------------------------------------')
+                              result.push(" /menuDelGiorno  Il menu di oggi.")
+                              result.push('-------------------------------------------------')
+                              result.push(" /GuardaChiCiVaOggi Guarda chi si unisce oggi")
+                       //       result.push('-------------------------------------------------')
+                      //        result.push(" /getAllUsers  Per visualizzare tutti gli utenti")
+                              result.push('--------------------------------------------------')
+                              result.push(" /CiVengoAnchioOggi  Per unirti a pranzo")
+                              result.push('--------------------------------------------------')
+                              result.push(" /NonCiVengoPiu  Ho cambiato idea")
+                              result.push('-------------------------------------------------')
+                              result.push(" /RemoveMe  Per non ricevere più notifiche")
+                              result.push('--------------------------------------------------')
+                                    result.push('\n')
+              */
 
-                
-    
+
+
 
 
               }
               else {
-                result.push('*** SOLO AMMINISTRATORI ***')
-                result.push('\n')   
-                result.push('----------------------------------------------------')
-                result.push(" /inserisciPiattoDelGiorno  Inserisci il menu del giorno.")
-                result.push('---------------------------------------------------')
-                result.push(" /dammiMenuNr Visualizza un menu in base al numero passato. Scrivi ad esemp: " + "'/dammiMenuNr 1' per vedere menu nr 1")
-                result.push('----------------------------------------------------')
-                result.push(" /dammiTuttiIMenu  Visualizza tutti i menu.")
-                result.push('----------------------------------------------------')
-                result.push(" /cancellaMenuNr Canella un menu in base al numero passato. Esempio: " + "'/cancellaMenuNr 1' per cancellare il nr 1")
-                result.push('-----------------------------------------------------')
-                result.push(" /inserisciMenu  Inserisci un nuovo menu.")
-                result.push('-----------------------------------------------------')
-                result.push('\n')
-
+        //        result.push('*** SOLO AMMINISTRATORI ***')
+    //            result.push('\n')
+        //        result.push('----------------------------------------------------')
+             //   result.push(" /inserisciPiattoDelGiorno  Inserisci il menu del giorno.")
+             //   result.push('---------------------------------------------------')
+          //      result.push(" /dammiMenuNr Visualizza un menu in base al numero passato. Scrivi ad esemp: " + "'/dammiMenuNr 1' per vedere menu nr 1")
+             //   result.push('----------------------------------------------------')
+             //   result.push(" /dammiTuttiIMenu  Visualizza tutti i menu.")
+            //    result.push('----------------------------------------------------')
+           //     result.push(" /cancellaMenuNr Canella un menu in base al numero passato. Esempio: " + "'/cancellaMenuNr 1' per cancellare il nr 1")
+             //   result.push('-----------------------------------------------------')
+              //  result.push(" /inserisciMenu  Inserisci un nuovo menu.")
+          //      result.push('-----------------------------------------------------')
+         //       result.push('\n')
+/*
                 result.push("*** COMMANDI PER TUTTI ***")
 
-                result.push('\n') 
+                result.push('\n')
                 result.push('-----------------------------------------------------')
                 result.push(" /menuDelGiorno  Il menu di oggi.")
                 result.push('-----------------------------------------------------')
                 result.push(" /GuardaChiCiVaOggi Guarda chi si unisce oggi")
-              
-             
+
+
                 result.push('------------------------------------------------------')
                 result.push(" /getAllUsers  Per visualizzare tutti gli utenti")
                 result.push('------------------------------------------------------')
@@ -109,13 +110,28 @@ class OtherwiseController extends Telegram.TelegramBaseController {
                 result.push('-------------------------------------------------------')
                 result.push(" /RemoveMe  Per non ricevere più notifiche")
                 result.push('------------------------------------------------------')
+*/
 
 
-                //      result.push('\n')
-    
+                $.runMenu({
+                  message: '*** COMMANDI PER TUTTI *** ',
+                  layout: 2,
+                  '\ud83e\udd58  /inserisciPiattoDelGiorno': () => { new MenuDelGiornoController().inserisciMenuDiOggi($) },
+                  '\ud83c\udf5b  /inserisciMenu ': () => { new MenuController().insertMenu($) },
+                  '\ud83c\udf5b  /trovaConId ': () => { new MenuController().getOneMenu($) },
+                  '\ud83c\udf5b  /cancella ': () => { new MenuController().removeOneMenu($) },
+                  '\ud83c\udf54  /dammiTuttiIMenu  ': () => { new MenuController().getAllMenu($)},
+                  '\ud83c\udf5c  /menuDelGiorno': () => { new MenuDelGiornoController().getMenuDelGiorno($) },
+                  '\ud83d\udd0d  /GuardaChiCiVaOggi': () => { new UsersController().GuardaChiCiVaOggi($) },
+                  '\ud83d\udc65  /CiVengoAnchioOggi': () => { new UsersController().CiVengoAnchioOggi($) },
+                  '\ud83d\udc4b  /NonCiVengoPiu': () => { new UsersController().NonCiVengoPiu($) },
+                  '\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66 /getAllUsers': () => { new UsersController().getAllUsers($) }
+
+                })
+
 
               }
-              $.sendMessage(result.join('\n'));
+          //    $.sendMessage(result.join('\n'));
 
             })
             .catch(error => {
