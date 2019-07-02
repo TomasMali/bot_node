@@ -45,20 +45,20 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
                                 var resultAsString = [];
                                 json_.forEach((v, i) => {
 
-                                    resultAsString.push(" PRIMO  --------> [" + v.primo.varieta_1
+                                    resultAsString.push("\ud83c\udf5c  PRIMO  --------> [" + v.primo.varieta_1
                                         + "  , " + v.primo.varieta_2
                                         + "  , " + v.primo.varieta_3
                                         + "  , " + v.primo.varieta_4
                                         + "  , " + v.primo.varieta_5 + ']')
                                     resultAsString.join('\n');
-                                    resultAsString.push("SECONDO  --------> [" + v.secondo.varieta_1
+                                    resultAsString.push("\ud83c\udf63 SECONDO  --------> [" + v.secondo.varieta_1
                                         + "  , " + v.secondo.varieta_2
                                         + "  , " + v.secondo.varieta_3
                                         + "  , " + v.secondo.varieta_4
                                         + "  , " + v.secondo.varieta_5 + ']')
 
                                     resultAsString.join('\n');
-                                    resultAsString.push("CONTORNO  --------> [" + v.contorno.varieta_1
+                                    resultAsString.push("\ud83e\udd57 CONTORNO  --------> [" + v.contorno.varieta_1
                                         + "  , " + v.contorno.varieta_2
                                         + "  , " + v.contorno.varieta_3
                                         + "  , " + v.contorno.varieta_4
@@ -160,20 +160,20 @@ class MenuDelGiornoController extends Telegram.TelegramBaseController {
                         var resultAsString = [];
                         json_.forEach((v, i) => {
 
-                            resultAsString.push(" PRIMO  --------> [" + v.primo.varieta_1
+                            resultAsString.push("\ud83c\udf5c PRIMO  --------> [" + v.primo.varieta_1
                                 + "  , " + v.primo.varieta_2
                                 + "  , " + v.primo.varieta_3
                                 + "  , " + v.primo.varieta_4
                                 + "  , " + v.primo.varieta_5 + ']')
                             resultAsString.join('\n');
-                            resultAsString.push("SECONDO  --------> [" + v.secondo.varieta_1
+                            resultAsString.push("\ud83c\udf63 SECONDO  --------> [" + v.secondo.varieta_1
                                 + "  , " + v.secondo.varieta_2
                                 + "  , " + v.secondo.varieta_3
                                 + "  , " + v.secondo.varieta_4
                                 + "  , " + v.secondo.varieta_5 + ']')
 
                             resultAsString.join('\n');
-                            resultAsString.push("CONTORNO  --------> [" + v.contorno.varieta_1
+                            resultAsString.push("\ud83e\udd57 CONTORNO  --------> [" + v.contorno.varieta_1
                                 + "  , " + v.contorno.varieta_2
                                 + "  , " + v.contorno.varieta_3
                                 + "  , " + v.contorno.varieta_4

@@ -43,13 +43,13 @@ class OtherwiseController extends Telegram.TelegramBaseController {
 
 
                 $.runMenu({
-                  message: '*** WHAT CAN I DO FOR YOU *** ',
+                  message: '*** COSA POSSO FARE PER TE *** ',
                   layout: 2,
                   '\ud83c\udf5c  /menuDelGiorno': () => { new MenuDelGiornoController().getMenuDelGiorno($) },
                   '\ud83d\udd0d  /GuardaChiCiVaOggi': () => { new UsersController().GuardaChiCiVaOggi($) },
                   '\ud83d\udc65  /CiVengoAnchioOggi': () => { new UsersController().CiVengoAnchioOggi($) },
                   '\ud83d\udc4b  /NonCiVengoPiu': () => { new UsersController().NonCiVengoPiu($) },
-                  '\u2716\ufe0f  /RemoveMe': () => { new UsersController().removeUser($) },
+                  '\u274e  /RemoveMe': () => { new UsersController().removeUser($) },
                 })
 
                 /*
@@ -114,19 +114,19 @@ class OtherwiseController extends Telegram.TelegramBaseController {
 
 
                 $.runMenu({
-                  message: '*** COMMANDI PER TUTTI *** ',
+                  message: '*** SCEGLI UNO DEI COMANDI *** ',
                   layout: 2,
-                  '\ud83e\udd58  /inserisciPiattoDelGiorno': () => { new MenuDelGiornoController().inserisciMenuDiOggi($) },
-                  '\ud83c\udf5b  /inserisciMenu ': () => { new MenuController().insertMenu($) },
-                  '\ud83c\udf5b  /trovaConId ': () => { new MenuController().getOneMenu($) },
-                  '\ud83c\udf5b  /cancella ': () => { new MenuController().removeOneMenu($) },
-                  '\ud83c\udf54  /dammiTuttiIMenu  ': () => { new MenuController().getAllMenu($)},
-                  '\ud83c\udf5c  /menuDelGiorno': () => { new MenuDelGiornoController().getMenuDelGiorno($) },
-                  '\ud83d\udd0d  /GuardaChiCiVaOggi': () => { new UsersController().GuardaChiCiVaOggi($) },
-                  '\ud83d\udc65  /CiVengoAnchioOggi': () => { new UsersController().CiVengoAnchioOggi($) },
-                  '\ud83d\udc4b  /NonCiVengoPiu': () => { new UsersController().NonCiVengoPiu($) },
-                  '\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66 /getAllUsers': () => { new UsersController().getAllUsers($) }
-
+                  '/inserisciPiattoDelGiorno \ud83e\udd58 ': () => { new MenuDelGiornoController().inserisciMenuDiOggi($) },
+                  '/inserisciMenu \ud83c\udf5b': () => { new MenuController().insertMenu($) },
+                  '/trovaMenuConId \ud83c\udf72': () => { new MenuController().getOneMenu($) },
+                  '/CancellaMenu \ud83c\udf65': () => { new MenuController().removeOneMenu($) },
+                  '/MenuList \ud83c\udf54': () => { new MenuController().MenuList($) },
+                  '/menuDelGiorno \ud83c\udf5c': () => { new MenuDelGiornoController().getMenuDelGiorno($) },
+                  '/GuardaChiCiVaOggi \ud83d\udd0d': () => { new UsersController().GuardaChiCiVaOggi($) },
+             //     '\ud83d\udc65  /CiVengoAnchioOggi': () => { new UsersController().CiVengoAnchioOggi($) },
+             //     '\ud83d\udc4b  /NonCiVengoPiu': () => { new UsersController().NonCiVengoPiu($) },
+                  '/UtentiRegistrati \ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66': () => { new UsersController().getAllUsers($) },
+                  '/MandaMenuDelGiorno_A_Tutti \ud83d\udce2': () => { new MenuDelGiornoController().MandaMenuDelGiorno_A_Tutti($) }   
                 })
 
 

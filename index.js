@@ -32,7 +32,7 @@ tg.router.
         new UsersController()
     ).
     when(
-        new TextCommand('/getAllUsers', 'getAllUsers'),
+        new TextCommand('/UtentiRegistrati', 'getAllUsers'),
         new UsersController()
     ).
     when(
@@ -53,15 +53,15 @@ tg.router.
     ).
     //    MENU CONTROLLER
     when(
-        new TextCommand('/trovaConId', 'getOneMenu'),
+        new TextCommand('/trovaMenuConId', 'getOneMenu'),
         new MenuController()
     ).
     when(
-        new TextCommand('/dammiTuttiIMenu', 'getAllMenu'),
+        new TextCommand('/MenuList', 'MenuList'),
         new MenuController()
     ).
     when(
-        new TextCommand('/cancella', 'removeOneMenu'),
+        new TextCommand('/CancellaMenu', 'removeOneMenu'),
         new MenuController()
     ).
     when(

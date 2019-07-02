@@ -70,11 +70,11 @@ class MenuController extends Telegram.TelegramBaseController {
                   resultAsString.push('\n')
                   //    resultAsString.join('\n');
 
-                  resultAsString.push("Menu_Id =====> [" + v.menuId + ']')
+                  resultAsString.push("\ud83d\udd18 Menu_Id =====> [" + v.menuId + ']')
 
                   resultAsString.join('\n');
 
-                  resultAsString.push("Primo =====> [" + v.primo.varieta_1
+                  resultAsString.push("\ud83d\udd18 Primo =====> [" + v.primo.varieta_1
                     + "  , " + v.primo.varieta_2
                     + "  , " + v.primo.varieta_3
                     + "  , " + v.primo.varieta_4
@@ -82,7 +82,7 @@ class MenuController extends Telegram.TelegramBaseController {
 
                   resultAsString.join('\n');
 
-                  resultAsString.push("Secondo =====> [" + v.secondo.varieta_1
+                  resultAsString.push("\ud83d\udd18 Secondo =====> [" + v.secondo.varieta_1
                     + "  , " + v.secondo.varieta_2
                     + "  , " + v.secondo.varieta_3
                     + "  , " + v.secondo.varieta_4
@@ -90,7 +90,7 @@ class MenuController extends Telegram.TelegramBaseController {
 
                   resultAsString.join('\n');
 
-                  resultAsString.push("Contorno =====> [" + v.contorno.varieta_1
+                  resultAsString.push("\ud83d\udd18 Contorno =====> [" + v.contorno.varieta_1
                     + "  , " + v.contorno.varieta_2
                     + "  , " + v.contorno.varieta_3
                     + "  , " + v.contorno.varieta_4
@@ -124,7 +124,7 @@ class MenuController extends Telegram.TelegramBaseController {
   }
 
   // Testato e funzionante
-  getAllMenu($) {
+  MenuList($) {
     // Qui cerco se l'utente è registrato
     const telegramUser = $.update.message.from;  // http://localhost:3000/users/find_one/
     const options = {
@@ -153,14 +153,13 @@ class MenuController extends Telegram.TelegramBaseController {
                 var resultAsString = [];
 
                 json_.forEach((v, i) => {
-                  resultAsString.push('<                    Menu numero ' + (i + 1) + ')')
+                  resultAsString.push('<                     \ud83c\udf5b  ' + (i + 1) + ')')
+                  resultAsString.join('\n');
+                  resultAsString.push(" Menu_Id -----> [" + v.menuId + ']')
+
                   resultAsString.join('\n');
 
-                  resultAsString.push("Menu_Id =====> [" + v.menuId + ']')
-
-                  resultAsString.join('\n');
-
-                  resultAsString.push("Primo =====> [" + v.primo.varieta_1
+                  resultAsString.push("\ud83c\udf5c  Primo -----> [" + v.primo.varieta_1
                     + "  , " + v.primo.varieta_2
                     + "  , " + v.primo.varieta_3
                     + "  , " + v.primo.varieta_4
@@ -168,7 +167,7 @@ class MenuController extends Telegram.TelegramBaseController {
 
                   resultAsString.join('\n');
 
-                  resultAsString.push("Secondo =====> [" + v.secondo.varieta_1
+                  resultAsString.push("\ud83c\udf63 Secondo -----> [" + v.secondo.varieta_1
                     + "  , " + v.secondo.varieta_2
                     + "  , " + v.secondo.varieta_3
                     + "  , " + v.secondo.varieta_4
@@ -176,7 +175,7 @@ class MenuController extends Telegram.TelegramBaseController {
 
                   resultAsString.join('\n');
 
-                  resultAsString.push("Contorno =====> [" + v.contorno.varieta_1
+                  resultAsString.push("\ud83e\udd57 Contorno -----> [" + v.contorno.varieta_1
                     + "  , " + v.contorno.varieta_2
                     + "  , " + v.contorno.varieta_3
                     + "  , " + v.contorno.varieta_4
@@ -429,7 +428,7 @@ class MenuController extends Telegram.TelegramBaseController {
   get routes() {
     return {
       'getOneMenu': 'getOneMenu',
-      'getAllMenu': 'getAllMenu',
+      'MenuList': 'MenuList',
       'removeOneMenu': 'removeOneMenu',
       'insertMenu': 'insertMenu'
     }
